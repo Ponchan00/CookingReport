@@ -1,0 +1,161 @@
+[p GLOBOPT AUTOSTATIC PIC14 PICMIDHI PICLOMID SPACEOPT ]
+"17 C:\Program Files\HI-TECH Software\PICC\LITE\9.60\include\pic1684.h
+[v _RTCC `Vuc  1 s 1 @1 ]
+"18
+[v _TMR0 `Vuc  1 s 1 @1 ]
+"19
+[v _PCL `Vuc  1 s 1 @2 ]
+"20
+[v _STATUS `Vuc  1 s 1 @3 ]
+"21
+[v _FSR `uc  1 s 1 @4 ]
+"22
+[v _PORTA `Vuc  1 s 1 @5 ]
+"23
+[v _PORTB `Vuc  1 s 1 @6 ]
+"24
+[v _EEDATA `Vuc  1 s 1 @8 ]
+"25
+[v _EEADR `Vuc  1 s 1 @9 ]
+"26
+[v _PCLATH `uc  1 s 1 @10 ]
+"27
+[v _INTCON `Vuc  1 s 1 @11 ]
+"29
+[v _OPTION `Xuc  1 s 1 @129 ]
+"30
+[v _TRISA `VXuc  1 s 1 @133 ]
+"31
+[v _TRISB `VXuc  1 s 1 @134 ]
+"32
+[v _EECON1 `VXuc  1 s 1 @136 ]
+"33
+[v _EECON2 `VXuc  1 s 1 @137 ]
+"36
+[v _RP0 `Vb  1 s 0 @29 ]
+"37
+[v _TO `Vb  1 s 0 @28 ]
+"38
+[v _PD `Vb  1 s 0 @27 ]
+"39
+[v _ZERO `Vb  1 s 0 @26 ]
+"40
+[v _DC `Vb  1 s 0 @25 ]
+"41
+[v _CARRY `Vb  1 s 0 @24 ]
+"44
+[v _RA4 `Vb  1 s 0 @44 ]
+"45
+[v _RA3 `Vb  1 s 0 @43 ]
+"46
+[v _RA2 `Vb  1 s 0 @42 ]
+"47
+[v _RA1 `Vb  1 s 0 @41 ]
+"48
+[v _RA0 `Vb  1 s 0 @40 ]
+"51
+[v _RB7 `Vb  1 s 0 @55 ]
+"52
+[v _RB6 `Vb  1 s 0 @54 ]
+"53
+[v _RB5 `Vb  1 s 0 @53 ]
+"54
+[v _RB4 `Vb  1 s 0 @52 ]
+"55
+[v _RB3 `Vb  1 s 0 @51 ]
+"56
+[v _RB2 `Vb  1 s 0 @50 ]
+"57
+[v _RB1 `Vb  1 s 0 @49 ]
+"58
+[v _RB0 `Vb  1 s 0 @48 ]
+"59
+[v _INT `Vb  1 s 0 @48 ]
+"62
+[v _GIE `Vb  1 s 0 @95 ]
+"63
+[v _EEIE `Vb  1 s 0 @94 ]
+"64
+[v _T0IE `Vb  1 s 0 @93 ]
+"65
+[v _INTE `Vb  1 s 0 @92 ]
+"66
+[v _RBIE `Vb  1 s 0 @91 ]
+"67
+[v _T0IF `Vb  1 s 0 @90 ]
+"68
+[v _INTF `Vb  1 s 0 @89 ]
+"69
+[v _RBIF `Vb  1 s 0 @88 ]
+"72
+[v _RBPU `Xb  1 s 0 @1039 ]
+"73
+[v _INTEDG `Xb  1 s 0 @1038 ]
+"74
+[v _T0CS `Xb  1 s 0 @1037 ]
+"75
+[v _T0SE `Xb  1 s 0 @1036 ]
+"76
+[v _PSA `Xb  1 s 0 @1035 ]
+"77
+[v _PS2 `Xb  1 s 0 @1034 ]
+"78
+[v _PS1 `Xb  1 s 0 @1033 ]
+"79
+[v _PS0 `Xb  1 s 0 @1032 ]
+"82
+[v _TRISA4 `VXb  1 s 0 @1068 ]
+"83
+[v _TRISA3 `VXb  1 s 0 @1067 ]
+"84
+[v _TRISA2 `VXb  1 s 0 @1066 ]
+"85
+[v _TRISA1 `VXb  1 s 0 @1065 ]
+"86
+[v _TRISA0 `VXb  1 s 0 @1064 ]
+"89
+[v _TRISB7 `VXb  1 s 0 @1079 ]
+"90
+[v _TRISB6 `VXb  1 s 0 @1078 ]
+"91
+[v _TRISB5 `VXb  1 s 0 @1077 ]
+"92
+[v _TRISB4 `VXb  1 s 0 @1076 ]
+"93
+[v _TRISB3 `VXb  1 s 0 @1075 ]
+"94
+[v _TRISB2 `VXb  1 s 0 @1074 ]
+"95
+[v _TRISB1 `VXb  1 s 0 @1073 ]
+"96
+[v _TRISB0 `VXb  1 s 0 @1072 ]
+"99
+[v _EEIF `VXb  1 s 0 @1092 ]
+"100
+[v _WRERR `VXb  1 s 0 @1091 ]
+"101
+[v _WREN `VXb  1 s 0 @1090 ]
+"102
+[v _WR `VXb  1 s 0 @1089 ]
+"103
+[v _RD `VXb  1 s 0 @1088 ]
+"7 C:\Documents and Settings\student01_2\My Documents\PICC\Test7.c
+[v _main `(v  1 e 0 0 ]
+{
+[v _a `uc  1 a 1 0 ]
+[v _ta `uc  6a a 6 1 ]
+"23
+} 7
+"25
+[v _ioport `(v  1 e 0 0 ]
+{
+"28
+} 0
+"30
+[v _delaym `(v  1 e 0 0 ]
+{
+[v _a `i  1 p 2 0 ]
+[v _a `i  1 p 2 0 ]
+"37
+} 0
+[v _DelayMs `(v  0 e 0 0 ]

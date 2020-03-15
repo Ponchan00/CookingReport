@@ -1,0 +1,414 @@
+
+
+HI-TECH Software PICC Macro Assembler V9.60PL1
+                                                      Mon Oct 21 15:21:10 2019
+
+
+     1                           	processor	16F84A
+     2                           	opt	pw 79
+     3                           	psect	text0,local,class=CODE,delta=2
+     4                           	psect	config,global,class=CONFIG,delta=2
+     5                           	psect	rdata_0,global,class=BANK0,space=1,delta
+      +                          =1
+     6                           	psect	idata_0,global,class=CODE,delta=2
+     7                           	psect	text1,local,class=CODE,delta=2
+     8                           	psect	text2,local,class=CODE,delta=2
+     9                           	psect	text3,local,class=CODE,delta=2
+    10                           	psect	text4,local,class=CODE,delta=2
+    11                           	psect	intcode,global,class=CODE,delta=2
+    12                           	psect	intsave_0,global,ovrld,class=BANK0,space
+      +                          =1,delta=1
+    13                           	psect	intret,global,class=CODE,delta=2
+    14                           	psect	intentry,global,class=CODE,delta=2
+    15                           	psect	intsave,global,class=BANK0,space=1,delta
+      +                          =1
+    16                           	psect	rbss_0,global,class=BANK0,space=1,delta=
+      +                          1
+    17                           	psect	temp,global,ovrld,class=BANK0,space=1,de
+      +                          lta=1
+    18  0000                     
+    19  0000                     
+    20  0000                     
+    21  0000                     
+    22  0000                     
+    23  0000                     
+    24  0000                     
+    25  0000                     
+    26  0000                     
+    27  0000                     	;#
+    28                           
+    29                           	psect	text0
+    30  00AD                     _main
+    31                           ;kadai4.c: 13: void main()
+    32  00AD  1283               	bcf	3,5
+    33  00AE  1086               	bcf	6,1
+    34                           ;kadai4.c: 16: interr();
+    35  00AF  1283               	bcf	3,5
+    36  00B0  20DA               	call	_interr
+    37                           ;kadai4.c: 17: ioport();
+    38  00B1  20E7               	call	_ioport
+    39                           ;kadai4.c: 18: while(1)
+    40                           ;kadai4.c: 19: {
+    41  00B2                     l5
+    42  00B2  1805               	btfsc	5,0
+    43  00B3  28BC               	goto	l7
+    44                           ;kadai4.c: 21: {
+    45  00B4  178B               	bsf	11,7
+    46                           ;kadai4.c: 23: bell(x[b]);
+    47  00B5  0810               	movf	_b,w
+    48  00B6  3E15               	addlw	_x
+    49  00B7  0084               	movwf	4
+    50  00B8  0800               	movf	0,w
+    51  00B9  1283               	bcf	3,5
+    52  00BA  20BF               	call	_bell
+    53  00BB  28B2               	goto	l5
+    54  00BC                     l7
+    55                           ;kadai4.c: 24: }
+    56  00BC  138B               	bcf	11,7
+    57                           ;kadai4.c: 26: RB1 = 0;
+    58  00BD  1086               	bcf	6,1
+    59  00BE  28B2               	goto	l5
+    60                           
+    61                           	psect	config
+    62  2007  3FF2               	dw	16370	;#
+    63                           
+    64                           	psect	rdata_0
+    65  0015                     _x
+                     _x
+    66  0015                     	ds	1
+                     	ds	1
+    67  0016                     	ds	1
+                     	ds	1
+    68  0017                     	ds	1
+                     	ds	1
+    69  0018                     	ds	1
+                     	ds	1
+    70  0019                     	ds	1
+                     	ds	1
+    71  001A                     	ds	1
+                     	ds	1
+    72  001B                     	ds	1
+                     	ds	1
+    73  001C                     	ds	1
+                     	ds	1
+    74  001D                     	ds	1
+                     	ds	1
+    75  001E                     	ds	1
+                     	ds	1
+    76  001F                     	ds	1
+                     	ds	1
+    77  0020                     	ds	1
+                     	ds	1
+    78  0021                     	ds	1
+    79  0022                     _y
+                     _y
+    80  0022                     	ds	1
+                     	ds	1
+    81  0023                     	ds	1
+                     	ds	1
+    82  0024                     	ds	1
+                     	ds	1
+    83  0025                     	ds	1
+                     	ds	1
+    84  0026                     	ds	1
+                     	ds	1
+    85  0027                     	ds	1
+                     	ds	1
+    86  0028                     	ds	1
+                     	ds	1
+    87  0029                     	ds	1
+                     	ds	1
+    88  002A                     	ds	1
+                     	ds	1
+    89  002B                     	ds	1
+                     	ds	1
+    90  002C                     	ds	1
+                     	ds	1
+    91  002D                     	ds	1
+                     	ds	1
+    92  002E                     	ds	1
+    93                           
+    94                           	psect	idata_0
+    95  007E  34BF               	retlw	-65
+    96  007F  34AA               	retlw	-86
+    97  0080  3497               	retlw	-105
+    98  0081  34BF               	retlw	-65
+    99  0082  34AA               	retlw	-86
+   100  0083  3497               	retlw	-105
+   101  0084  347F               	retlw	127
+   102  0085  3497               	retlw	-105
+   103  0086  34AA               	retlw	-86
+   104  0087  34BF               	retlw	-65
+   105  0088  34AA               	retlw	-86
+   106  0089  3497               	retlw	-105
+   107  008A  34AA               	retlw	-86
+   108  008B  3401               	retlw	1
+   109  008C  3401               	retlw	1
+   110  008D  3402               	retlw	2
+   111  008E  3401               	retlw	1
+   112  008F  3401               	retlw	1
+   113  0090  3402               	retlw	2
+   114  0091  3401               	retlw	1
+   115  0092  3401               	retlw	1
+   116  0093  3401               	retlw	1
+   117  0094  3401               	retlw	1
+   118  0095  3401               	retlw	1
+   119  0096  3401               	retlw	1
+   120  0097  3402               	retlw	2
+   121                           
+   122                           	psect	text1
+   123  00E7                     _ioport
+   124                           ;kadai4.c: 29: void ioport(void)
+   125  00E7  300F               	movlw	15
+   126  00E8  1683               	bsf	3,5
+   127  00E9  0085               	movwf	5	;volatile
+   128                           ;kadai4.c: 32: TRISB = 0;
+   129  00EA  0186               	clrf	6	;volatile
+   130                           ;kadai4.c: 33: }
+   131  00EB  1283               	bcf	3,5
+   132  00EC  0008               	return	;W free
+   133                           
+   134                           	psect	text2
+   135  00BF                     _bell
+   136                           ;	_a assigned to ?a_bell+0
+   137  0000                     _bell$a	set	?a_bell
+   138                           ;	__dcnt assigned to ?a_bell+1
+   139  0000                     _bell$_dcnt	set	?a_bell+1
+   140                           ;	__dcnt assigned to ?a_bell+1
+   141  0000                     _bell$_dcnt	set	?a_bell+1
+   142                           ;_a stored from w
+   143  00BF  1283               	bcf	3,5
+   144  00C0  0092               	movwf	?a_bell
+   145                           ;kadai4.c: 34: void bell(char a)
+   146  00C1  1086               	bcf	6,1
+   147                           ;kadai4.c: 37: { unsigned char _dcnt; _dcnt = (
+      +                          a)/((12*1000L)/(10*1000L))|1; while(--_dcnt != 
+      +                          0) continue; };
+   148  00C2  3801               	iorlw	1
+   149  00C3  0093               	movwf	?a_bell+1
+   150  00C4                     l10
+   151  00C4  0B93               	decfsz	?a_bell+1
+   152  00C5  28C4               	goto	l10
+   153                           ;kadai4.c: 38: RB1 = 1;
+   154  00C6  1486               	bsf	6,1
+   155                           ;kadai4.c: 39: { unsigned char _dcnt; _dcnt = (
+      +                          a)/((12*1000L)/(10*1000L))|1; while(--_dcnt != 
+      +                          0) continue; };
+   156  00C7  0812               	movf	?a_bell,w
+   157  00C8  3801               	iorlw	1
+   158  00C9  0093               	movwf	?a_bell+1
+   159  00CA                     l14
+   160  00CA  0B93               	decfsz	?a_bell+1
+   161  00CB  28CA               	goto	l14
+   162  00CC  0008               	return
+   163                           
+   164                           	psect	text3
+   165  00DA                     _interr
+   166                           ;kadai4.c: 41: void interr(void)
+   167  00DA  138B               	bcf	11,7
+   168                           ;kadai4.c: 44: T0IE = 1;
+   169  00DB  168B               	bsf	11,5
+   170                           ;kadai4.c: 45: T0IF = 0;
+   171  00DC  110B               	bcf	11,2
+   172                           ;kadai4.c: 46: TMR0 = 0;
+   173  00DD  1283               	bcf	3,5
+   174  00DE  0181               	clrf	1	;volatile
+   175                           ;kadai4.c: 47: T0CS = 0;
+   176  00DF  1683               	bsf	3,5
+   177  00E0  1281               	bcf	1,5
+   178                           ;kadai4.c: 48: PSA = 0;
+   179  00E1  1181               	bcf	1,3
+   180                           ;kadai4.c: 49: PS0 = 1;
+   181  00E2  1401               	bsf	1,0
+   182                           ;kadai4.c: 50: PS1 = 1;
+   183  00E3  1481               	bsf	1,1
+   184                           ;kadai4.c: 51: PS2 = 1;
+   185  00E4  1501               	bsf	1,2
+   186                           ;kadai4.c: 52: }
+   187  00E5  1283               	bcf	3,5
+   188  00E6  0008               	return	;W free
+   189                           
+   190                           	psect	intcode
+   191  0016                     _isr
+   192  0016                     int_func
+   193                           ;kadai4.c: 53: interrupt isr()
+   194  0016  110B               	bcf	11,2
+   195                           ;kadai4.c: 56: a = a + 1;
+   196  0017  1283               	bcf	3,5
+   197  0018  0A8E               	incf	_a
+   198  0019  1903               	btfsc	3,2
+   199  001A  0A8F               	incf	_a+1
+   200                           ;kadai4.c: 57: if(a == 39*y[b])
+   201  001B  3027               	movlw	39
+   202  001C  00CC               	movwf	btemp+2
+   203  001D  01CD               	clrf	btemp+3
+   204  001E  0810               	movf	_b,w
+   205  001F  3E22               	addlw	_y
+   206  0020  0084               	movwf	4
+   207  0021  0800               	movf	0,w
+   208  0022  00CA               	movwf	btemp
+   209  0023  01CB               	clrf	btemp+1
+   210  0024  2098               	call	awmul
+   211  0025  080F               	movf	_a+1,w
+   212  0026  064F               	xorwf	btemp+5,w
+   213  0027  1D03               	btfss	3,2
+   214  0028  282B               	goto	u45
+   215  0029  080E               	movf	_a,w
+   216  002A  064E               	xorwf	btemp+4,w
+   217  002B                     u45
+   218  002B  1D03               	btfss	3,2
+   219  002C  2839               	goto	l17
+   220                           ;kadai4.c: 58: {
+   221  002D  0A90               	incf	_b
+   222  002E  1903               	btfsc	3,2
+   223  002F  0A91               	incf	_b+1
+   224                           ;kadai4.c: 60: if(b == 13)
+   225  0030  0810               	movf	_b,w
+   226  0031  3A0D               	xorlw	13
+   227  0032  0411               	iorwf	_b+1,w
+   228  0033  1D03               	btfss	3,2
+   229  0034  2837               	goto	l19
+   230                           ;kadai4.c: 61: {
+   231  0035  0190               	clrf	_b
+   232  0036  0191               	clrf	_b+1
+   233  0037                     l19
+   234                           ;kadai4.c: 63: }
+   235  0037  018E               	clrf	_a
+   236  0038  018F               	clrf	_a+1
+   237                           ;kadai4.c: 65: }
+   238  0039                     l17
+   239  0039  1283               	bcf	3,5
+   240                           
+   241                           	psect	intsave_0
+   242  000C                     saved_w
+                     saved_w
+   243  000C                     	ds	1
+   244                           
+   245                           	psect	intret
+   246  0046  0832               	movf	saved_fsr,w
+   247  0047  0084               	movwf	4	;restore FSR
+   248  0048                     int_restore
+   249  0048  0831               	movf	saved_status,w
+   250  0049  0083               	movwf	3
+   251  004A  0E8C               	swapf	saved_w
+   252  004B  0E0C               	swapf	saved_w,w
+   253  004C  0009               	retfie
+   254                           
+   255                           	psect	intentry
+   256  0004                     int_entry
+   257  0004  008C               	movwf	saved_w
+   258  0005  0803               	movf	3,w
+   259  0006  0183               	clrf	3
+   260  0007  00B1               	movwf	saved_status
+   261  0008  0804               	movf	4,w
+   262  0009  00B2               	movwf	saved_fsr
+   263  0000                     
+   264  0000                     
+   265  0000                     
+   266  0000                     
+   267  0000                     
+   268  0000                     
+   269  0000                     
+   270  0000                     
+   271  0000                     
+   272  0000                     
+   273  0000                     
+   274  0000                     
+   275  0000                     
+   276  0000                     
+   277  0000                     
+   278  0000                     
+   279  0000                     
+   280  0000                     
+   281  0000                     
+   282  0000                     
+   283  0000                     
+   284  0000                     
+   285  0000                     
+   286  0000                     
+   287  0000                     
+   288  0000                     
+   289  0000                     
+   290  0000                     
+   291  0000                     
+   292  0000                     
+   293  0000                     
+   294  0000                     
+   295  0000                     
+   296  0000                     
+   297  0000                     
+   298  0000                     
+   299  0000                     
+   300  0000                     
+   301  0000                     
+   302  0000                     
+   303  0000                     
+   304  0000                     
+   305  0000                     
+   306  0000                     
+   307  0000                     
+   308  0000                     
+   309  0000                     
+   310  0000                     
+   311  0000                     
+   312  0000                     
+   313  0000                     
+   314  0000                     
+   315  0000                     
+   316  0000                     
+   317  0000                     
+   318  0000                     
+   319  0000                     
+   320  0000                     
+   321  0000                     
+   322  0000                     
+   323  0000                     
+   324  0000                     
+   325  0000                     
+   326  0000                     
+   327  0000                     
+   328  0000                     
+   329  0000                     
+   330  0000                     
+   331  0000                     
+   332  0000                     
+   333                           
+   334                           	psect	intsave
+   335  0031                     saved_status
+                     saved_status
+   336  0031                     	ds	1
+   337  0032                     saved_fsr
+                     saved_fsr
+   338  0032                     	ds	1
+   339                           
+   340                           	psect	rbss_0
+   341  000D                     _bell_flg
+                     _bell_flg
+   342  000D                     	ds	1
+   343  000E                     _a
+                     _a
+   344  000E                     	ds	2
+   345  0010                     _b
+                     _b
+   346  0010                     	ds	2
+   347                           
+   348                           	psect	temp
+   349  004A                     btemp
+                     btemp
+   350  004A                     	ds	6
+
+
+HI-TECH Software PICC Macro Assembler V9.60PL1
+Symbol Table                                          Mon Oct 21 15:21:10 2019
+
+     ?a_bell 0012            l5 00B2            l7 00BC            _a 000E  
+          _b 0010            _x 0015            _y 0022           l10 00C4  
+         l14 00CA           l17 0039           l19 0037           u45 002B  
+         fsr 0004          _isr 0016       _interr 00DA       _ioport 00E7  
+ save_btemp0 000A   save_btemp1 000C   save_btemp2 000E   save_btemp3 0010  
+ save_btemp4 0012   save_btemp5 0014   save_btemp6 0016   save_btemp7 0016  
+       _bell 00BF         _main 00AD         btemp 004A         awmul 0098  
+       start 004D       saved_w 000C     int_entry 0004     saved_fsr 0032  
+saved_status 0031        status 0003      int_func 0016   int_restore 0048  
+ used_btemp0 0001   used_btemp1 0001   used_btemp2 0001   used_btemp3 0001  
+ used_btemp4 0001   used_btemp5 0001     _bell_flg 000D  

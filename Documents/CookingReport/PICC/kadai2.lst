@@ -1,0 +1,246 @@
+
+
+HI-TECH Software PICC Macro Assembler V9.60PL1
+                                                      Mon Jan 27 16:04:31 2020
+
+
+     1                           	processor	16F84A
+     2                           	opt	pw 79
+     3                           	psect	text0,local,class=CODE,delta=2
+     4                           	psect	config,global,class=CONFIG,delta=2
+     5                           	psect	rdata_0,global,class=BANK0,space=1,delta
+      +                          =1
+     6                           	psect	idata_0,global,class=CODE,delta=2
+     7                           	psect	text1,local,class=CODE,delta=2
+     8                           	psect	intcode,global,class=CODE,delta=2
+     9                           	psect	intsave_0,global,ovrld,class=BANK0,space
+      +                          =1,delta=1
+    10                           	psect	intret,global,class=CODE,delta=2
+    11                           	psect	intentry,global,class=CODE,delta=2
+    12                           	psect	intsave,global,class=BANK0,space=1,delta
+      +                          =1
+    13                           	psect	rbss_0,global,class=BANK0,space=1,delta=
+      +                          1
+    14  0000                     
+    15  0000                     
+    16  0000                     
+    17  0000                     
+    18  0000                     
+    19  0000                     
+    20  0000                     
+    21  0000                     
+    22  0000                     
+    23  0000                     	;#
+    24                           
+    25                           	psect	text0
+    26  0060                     _main
+    27                           ;kadai2.c: 6: void main()
+    28  0060  178B               	bsf	11,7
+    29                           ;kadai2.c: 9: T0IE=1;
+    30  0061  168B               	bsf	11,5
+    31                           ;kadai2.c: 10: T0IF=0;
+    32  0062  110B               	bcf	11,2
+    33                           ;kadai2.c: 11: TMR0=0;
+    34  0063  1283               	bcf	3,5
+    35  0064  0181               	clrf	1	;volatile
+    36                           ;kadai2.c: 12: T0CS=0;
+    37  0065  1683               	bsf	3,5
+    38  0066  1281               	bcf	1,5
+    39                           ;kadai2.c: 13: PSA=0;
+    40  0067  1181               	bcf	1,3
+    41                           ;kadai2.c: 14: PS0=1;
+    42  0068  1401               	bsf	1,0
+    43                           ;kadai2.c: 15: PS1=1;
+    44  0069  1481               	bsf	1,1
+    45                           ;kadai2.c: 16: PS2=1;
+    46  006A  1501               	bsf	1,2
+    47                           ;kadai2.c: 17: TRISB=0;
+    48  006B  0186               	clrf	6	;volatile
+    49                           ;kadai2.c: 18: while(1);
+    50  006C                     l2
+    51  006C  286C               	goto	l2
+    52                           
+    53                           	psect	config
+    54  2007  3FF2               	dw	16370	;#
+    55                           
+    56                           	psect	rdata_0
+    57  0013                     _ta
+                     _ta
+    58  0013                     	ds	1
+                     	ds	1
+    59  0014                     	ds	1
+                     	ds	1
+    60  0015                     	ds	1
+                     	ds	1
+    61  0016                     	ds	1
+                     	ds	1
+    62  0017                     	ds	1
+                     	ds	1
+    63  0018                     	ds	1
+    64                           
+    65                           	psect	idata_0
+    66  005A  3401               	retlw	1
+    67  005B  3406               	retlw	6
+    68  005C  340F               	retlw	15
+    69  005D  3408               	retlw	8
+    70  005E  3402               	retlw	2
+    71  005F  3404               	retlw	4
+    72                           
+    73                           	psect	intcode
+    74  000A                     _isr
+    75  000A                     int_func
+    76                           ;kadai2.c: 20: interrupt isr()
+    77  000A  110B               	bcf	11,2
+    78                           ;kadai2.c: 23: a=a+1;
+    79  000B  1283               	bcf	3,5
+    80  000C  0A8D               	incf	_a
+    81                           ;kadai2.c: 24: if(a==19)
+    82  000D  080D               	movf	_a,w
+    83  000E  3A13               	xorlw	19
+    84  000F  1D03               	btfss	3,2
+    85  0010  2821               	goto	l5
+    86                           ;kadai2.c: 25: {
+    87  0011  080E               	movf	_b,w
+    88  0012  3E13               	addlw	_ta
+    89  0013  0084               	movwf	4
+    90  0014  0800               	movf	0,w
+    91  0015  0086               	movwf	6	;volatile
+    92                           ;kadai2.c: 27: b=b+1;
+    93  0016  0A8E               	incf	_b
+    94  0017  1903               	btfsc	3,2
+    95  0018  0A8F               	incf	_b+1
+    96                           ;kadai2.c: 28: if(b==6){
+    97  0019  080E               	movf	_b,w
+    98  001A  3A06               	xorlw	6
+    99  001B  040F               	iorwf	_b+1,w
+   100  001C  1D03               	btfss	3,2
+   101  001D  2820               	goto	l7
+   102                           ;kadai2.c: 29: b=0;
+   103  001E  018E               	clrf	_b
+   104  001F  018F               	clrf	_b+1
+   105  0020                     l7
+   106                           ;kadai2.c: 30: }
+   107  0020  018D               	clrf	_a
+   108                           ;kadai2.c: 32: }
+   109  0021                     l5
+   110  0021  1283               	bcf	3,5
+   111                           
+   112                           	psect	intsave_0
+   113  000C                     saved_w
+                     saved_w
+   114  000C                     	ds	1
+   115                           
+   116                           	psect	intret
+   117  0022  081A               	movf	saved_fsr,w
+   118  0023  0084               	movwf	4	;restore FSR
+   119  0024                     int_restore
+   120  0024  0819               	movf	saved_status,w
+   121  0025  0083               	movwf	3
+   122  0026  0E8C               	swapf	saved_w
+   123  0027  0E0C               	swapf	saved_w,w
+   124  0028  0009               	retfie
+   125                           
+   126                           	psect	intentry
+   127  0004                     int_entry
+   128  0004  008C               	movwf	saved_w
+   129  0005  0803               	movf	3,w
+   130  0006  0183               	clrf	3
+   131  0007  0099               	movwf	saved_status
+   132  0008  0804               	movf	4,w
+   133  0009  009A               	movwf	saved_fsr
+   134  0000                     
+   135  0000                     
+   136  0000                     
+   137  0000                     
+   138  0000                     
+   139  0000                     
+   140  0000                     
+   141  0000                     
+   142  0000                     
+   143  0000                     
+   144  0000                     
+   145  0000                     
+   146  0000                     
+   147  0000                     
+   148  0000                     
+   149  0000                     
+   150  0000                     
+   151  0000                     
+   152  0000                     
+   153  0000                     
+   154  0000                     
+   155  0000                     
+   156  0000                     
+   157  0000                     
+   158  0000                     
+   159  0000                     
+   160  0000                     
+   161  0000                     
+   162  0000                     
+   163  0000                     
+   164  0000                     
+   165  0000                     
+   166  0000                     
+   167  0000                     
+   168  0000                     
+   169  0000                     
+   170  0000                     
+   171  0000                     
+   172  0000                     
+   173  0000                     
+   174  0000                     
+   175  0000                     
+   176  0000                     
+   177  0000                     
+   178  0000                     
+   179  0000                     
+   180  0000                     
+   181  0000                     
+   182  0000                     
+   183  0000                     
+   184  0000                     
+   185  0000                     
+   186  0000                     
+   187  0000                     
+   188  0000                     
+   189  0000                     
+   190  0000                     
+   191  0000                     
+   192  0000                     
+   193  0000                     
+   194  0000                     
+   195  0000                     
+   196  0000                     
+   197  0000                     
+   198  0000                     
+   199  0000                     
+   200  0000                     
+   201  0000                     
+   202  0000                     
+   203  0000                     
+   204                           
+   205                           	psect	intsave
+   206  0019                     saved_status
+                     saved_status
+   207  0019                     	ds	1
+   208  001A                     saved_fsr
+                     saved_fsr
+   209  001A                     	ds	1
+   210                           
+   211                           	psect	rbss_0
+   212  000D                     _a
+                     _a
+   213  000D                     	ds	1
+   214  000E                     _b
+                     _b
+   215  000E                     	ds	2
+
+
+HI-TECH Software PICC Macro Assembler V9.60PL1
+Symbol Table                                          Mon Jan 27 16:04:31 2020
+
+          l2 006C            l5 0021            l7 0020            _a 000D  
+          _b 000E           _ta 0013           fsr 0004          _isr 000A  
+       _main 0060         start 0029       saved_w 000C     int_entry 0004  
+   saved_fsr 001A  saved_status 0019        status 0003      int_func 000A  
+ int_restore 0024  

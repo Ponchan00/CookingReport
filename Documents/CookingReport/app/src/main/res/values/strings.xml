@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Cooking Report</string>
+    <string name="read_text">日記を読む</string>
+    <string name="write_text">日記を書く</string>
+    <string name="configuration_text">設定</string>
+    <string name="backHome1_text">戻る</string>
+    <string name="article_text">記事に進む</string>
+    <string name="backRead_text">戻る</string>
+    <string name="edit_text">編集</string>
+    <string name="backHome2_text">戻る</string>
+    <string name="selectPicture_text">写真を選ぶ</string>
+    <string name="backSelect_text">戻る</string>
+    <string name="backHome3_text">戻る</string>
+    <string name="save_text">保存</string>
+
+    <string name="no_date"></string>
+    <string name="pick_date">日付を選択</string>
+
+    <string name="button">写真を選択</string>
+    <string name="description">a picture</string>
+</resources>

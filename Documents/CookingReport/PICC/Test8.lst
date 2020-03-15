@@ -1,0 +1,202 @@
+
+
+HI-TECH Software PICC Macro Assembler V9.60PL1
+                                                      Mon Jan 27 15:52:57 2020
+
+
+     1                           	processor	16F84A
+     2                           	opt	pw 79
+     3                           	psect	text0,local,class=CODE,delta=2
+     4                           	psect	config,global,class=CONFIG,delta=2
+     5                           	psect	text1,local,class=CODE,delta=2
+     6                           	psect	intcode,global,class=CODE,delta=2
+     7                           	psect	intsave_0,global,ovrld,class=BANK0,space
+      +                          =1,delta=1
+     8                           	psect	intret,global,class=CODE,delta=2
+     9                           	psect	intentry,global,class=CODE,delta=2
+    10                           	psect	intsave,global,class=BANK0,space=1,delta
+      +                          =1
+    11                           	psect	rbss_0,global,class=BANK0,space=1,delta=
+      +                          1
+    12  0000                     
+    13  0000                     
+    14  0000                     
+    15  0000                     
+    16  0000                     
+    17  0000                     
+    18  0000                     
+    19  0000                     
+    20  0000                     
+    21  0000                     	;#
+    22                           
+    23                           	psect	text0
+    24  002F                     _main
+    25                           ;Test8.c: 4: void main()
+    26  002F  178B               	bsf	11,7
+    27                           ;Test8.c: 7: T0IE=1;
+    28  0030  168B               	bsf	11,5
+    29                           ;Test8.c: 8: T0IF=0;
+    30  0031  110B               	bcf	11,2
+    31                           ;Test8.c: 9: TMR0=0;
+    32  0032  1283               	bcf	3,5
+    33  0033  0181               	clrf	1	;volatile
+    34                           ;Test8.c: 10: T0CS=0;
+    35  0034  1683               	bsf	3,5
+    36  0035  1281               	bcf	1,5
+    37                           ;Test8.c: 11: PSA=0;
+    38  0036  1181               	bcf	1,3
+    39                           ;Test8.c: 12: PS0=1;
+    40  0037  1401               	bsf	1,0
+    41                           ;Test8.c: 13: PS1=1;
+    42  0038  1481               	bsf	1,1
+    43                           ;Test8.c: 14: PS2=1;
+    44  0039  1501               	bsf	1,2
+    45                           ;Test8.c: 15: TRISB=0;
+    46  003A  0186               	clrf	6	;volatile
+    47                           ;Test8.c: 16: while(1);
+    48  003B                     l2
+    49  003B  283B               	goto	l2
+    50                           
+    51                           	psect	config
+    52  2007  3FF2               	dw	16370	;#
+    53                           
+    54                           	psect	intcode
+    55  0008                     _isr
+    56  0008                     int_func
+    57                           ;Test8.c: 18: interrupt isr()
+    58  0008  110B               	bcf	11,2
+    59                           ;Test8.c: 21: a=a+1;
+    60  0009  1283               	bcf	3,5
+    61  000A  0A8D               	incf	_a
+    62                           ;Test8.c: 22: if(a==19)
+    63  000B  080D               	movf	_a,w
+    64  000C  3A13               	xorlw	19
+    65  000D  1D03               	btfss	3,2
+    66  000E  2817               	goto	l5
+    67                           ;Test8.c: 23: {
+    68  000F  0806               	movf	6,w	;volatile
+    69  0010  1D03               	btfss	3,2
+    70  0011  2815               	goto	l7
+    71                           ;Test8.c: 25: {
+    72  0012  300F               	movlw	15
+    73  0013  0086               	movwf	6	;volatile
+    74                           ;Test8.c: 27: }
+    75  0014  2816               	goto	l8
+    76  0015                     l7
+    77                           ;Test8.c: 28: else
+    78  0015  0186               	clrf	6	;volatile
+    79  0016                     l8
+    80                           ;Test8.c: 31: }
+    81  0016  018D               	clrf	_a
+    82                           ;Test8.c: 33: }
+    83  0017                     l5
+    84  0017  1283               	bcf	3,5
+    85                           
+    86                           	psect	intsave_0
+    87  000C                     saved_w
+                     saved_w
+    88  000C                     	ds	1
+    89                           
+    90                           	psect	intret
+    91  0018                     int_restore
+    92  0018  0811               	movf	saved_status,w
+    93  0019  0083               	movwf	3
+    94  001A  0E8C               	swapf	saved_w
+    95  001B  0E0C               	swapf	saved_w,w
+    96  001C  0009               	retfie
+    97                           
+    98                           	psect	intentry
+    99  0004                     int_entry
+   100  0004  008C               	movwf	saved_w
+   101  0005  0803               	movf	3,w
+   102  0006  0183               	clrf	3
+   103  0007  0091               	movwf	saved_status
+   104  0000                     
+   105  0000                     
+   106  0000                     
+   107  0000                     
+   108  0000                     
+   109  0000                     
+   110  0000                     
+   111  0000                     
+   112  0000                     
+   113  0000                     
+   114  0000                     
+   115  0000                     
+   116  0000                     
+   117  0000                     
+   118  0000                     
+   119  0000                     
+   120  0000                     
+   121  0000                     
+   122  0000                     
+   123  0000                     
+   124  0000                     
+   125  0000                     
+   126  0000                     
+   127  0000                     
+   128  0000                     
+   129  0000                     
+   130  0000                     
+   131  0000                     
+   132  0000                     
+   133  0000                     
+   134  0000                     
+   135  0000                     
+   136  0000                     
+   137  0000                     
+   138  0000                     
+   139  0000                     
+   140  0000                     
+   141  0000                     
+   142  0000                     
+   143  0000                     
+   144  0000                     
+   145  0000                     
+   146  0000                     
+   147  0000                     
+   148  0000                     
+   149  0000                     
+   150  0000                     
+   151  0000                     
+   152  0000                     
+   153  0000                     
+   154  0000                     
+   155  0000                     
+   156  0000                     
+   157  0000                     
+   158  0000                     
+   159  0000                     
+   160  0000                     
+   161  0000                     
+   162  0000                     
+   163  0000                     
+   164  0000                     
+   165  0000                     
+   166  0000                     
+   167  0000                     
+   168  0000                     
+   169  0000                     
+   170  0000                     
+   171  0000                     
+   172  0000                     
+   173  0000                     
+   174                           
+   175                           	psect	intsave
+   176  0011                     saved_status
+                     saved_status
+   177  0011                     	ds	1
+   178                           
+   179                           	psect	rbss_0
+   180  000D                     _a
+                     _a
+   181  000D                     	ds	1
+
+
+HI-TECH Software PICC Macro Assembler V9.60PL1
+Symbol Table                                          Mon Jan 27 15:52:57 2020
+
+          l2 003B            l5 0017            l7 0015            l8 0016  
+          _a 000D          _isr 0008         _main 002F         start 001D  
+     saved_w 000C     int_entry 0004  saved_status 0011        status 0003  
+    int_func 0008   int_restore 0018  

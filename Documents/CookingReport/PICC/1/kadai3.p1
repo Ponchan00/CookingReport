@@ -1,0 +1,358 @@
+Version 3.2 HI-TECH Software Intermediate Code
+"17 C:\Program Files\HI-TECH Software\PICC\LITE\9.60\include\pic1684.h
+[v _RTCC `Vuc 1 s@1 ]
+"18
+[v _TMR0 `Vuc 1 s@1 ]
+"19
+[v _PCL `Vuc 1 s@2 ]
+"20
+[v _STATUS `Vuc 1 s@3 ]
+"21
+[v _FSR `uc 1 s@4 ]
+"22
+[v _PORTA `Vuc 1 s@5 ]
+"23
+[v _PORTB `Vuc 1 s@6 ]
+"24
+[v _EEDATA `Vuc 1 s@8 ]
+"25
+[v _EEADR `Vuc 1 s@9 ]
+"26
+[v _PCLATH `uc 1 s@10 ]
+"27
+[v _INTCON `Vuc 1 s@11 ]
+"29
+[v _OPTION `Xuc 1 s@129 ]
+"30
+[v _TRISA `VXuc 1 s@133 ]
+"31
+[v _TRISB `VXuc 1 s@134 ]
+"32
+[v _EECON1 `VXuc 1 s@136 ]
+"33
+[v _EECON2 `VXuc 1 s@137 ]
+"36
+[v _RP0 `Vb 1 s@29 ]
+"37
+[v _TO `Vb 1 s@28 ]
+"38
+[v _PD `Vb 1 s@27 ]
+"39
+[v _ZERO `Vb 1 s@26 ]
+"40
+[v _DC `Vb 1 s@25 ]
+"41
+[v _CARRY `Vb 1 s@24 ]
+"44
+[v _RA4 `Vb 1 s@44 ]
+"45
+[v _RA3 `Vb 1 s@43 ]
+"46
+[v _RA2 `Vb 1 s@42 ]
+"47
+[v _RA1 `Vb 1 s@41 ]
+"48
+[v _RA0 `Vb 1 s@40 ]
+"51
+[v _RB7 `Vb 1 s@55 ]
+"52
+[v _RB6 `Vb 1 s@54 ]
+"53
+[v _RB5 `Vb 1 s@53 ]
+"54
+[v _RB4 `Vb 1 s@52 ]
+"55
+[v _RB3 `Vb 1 s@51 ]
+"56
+[v _RB2 `Vb 1 s@50 ]
+"57
+[v _RB1 `Vb 1 s@49 ]
+"58
+[v _RB0 `Vb 1 s@48 ]
+"59
+[v _INT `Vb 1 s@48 ]
+"62
+[v _GIE `Vb 1 s@95 ]
+"63
+[v _EEIE `Vb 1 s@94 ]
+"64
+[v _T0IE `Vb 1 s@93 ]
+"65
+[v _INTE `Vb 1 s@92 ]
+"66
+[v _RBIE `Vb 1 s@91 ]
+"67
+[v _T0IF `Vb 1 s@90 ]
+"68
+[v _INTF `Vb 1 s@89 ]
+"69
+[v _RBIF `Vb 1 s@88 ]
+"72
+[v _RBPU `Xb 1 s@1039 ]
+"73
+[v _INTEDG `Xb 1 s@1038 ]
+"74
+[v _T0CS `Xb 1 s@1037 ]
+"75
+[v _T0SE `Xb 1 s@1036 ]
+"76
+[v _PSA `Xb 1 s@1035 ]
+"77
+[v _PS2 `Xb 1 s@1034 ]
+"78
+[v _PS1 `Xb 1 s@1033 ]
+"79
+[v _PS0 `Xb 1 s@1032 ]
+"82
+[v _TRISA4 `VXb 1 s@1068 ]
+"83
+[v _TRISA3 `VXb 1 s@1067 ]
+"84
+[v _TRISA2 `VXb 1 s@1066 ]
+"85
+[v _TRISA1 `VXb 1 s@1065 ]
+"86
+[v _TRISA0 `VXb 1 s@1064 ]
+"89
+[v _TRISB7 `VXb 1 s@1079 ]
+"90
+[v _TRISB6 `VXb 1 s@1078 ]
+"91
+[v _TRISB5 `VXb 1 s@1077 ]
+"92
+[v _TRISB4 `VXb 1 s@1076 ]
+"93
+[v _TRISB3 `VXb 1 s@1075 ]
+"94
+[v _TRISB2 `VXb 1 s@1074 ]
+"95
+[v _TRISB1 `VXb 1 s@1073 ]
+"96
+[v _TRISB0 `VXb 1 s@1072 ]
+"99
+[v _EEIF `VXb 1 s@1092 ]
+"100
+[v _WRERR `VXb 1 s@1091 ]
+"101
+[v _WREN `VXb 1 s@1090 ]
+"102
+[v _WR `VXb 1 s@1089 ]
+"103
+[v _RD `VXb 1 s@1088 ]
+"3 C:\Documents and Settings\student04_2\My Documents\PICC\kadai3.c
+[; 	psect config,class=CONFIG,delta=2 ;#
+[; 	dw 0x3FFE & 0x3FFB & 0x3FF7 & 0x3FFF ;#
+"7
+[v _a `i 1 e ]
+"8
+[v _b `i 1 e ]
+"9
+[v _bell_flg `uc 1 e ]
+"10
+[v _x `uc -> 8 `i e ]
+[i _x
+:U ..
+-> -> 191 `i `uc
+-> -> 170 `i `uc
+-> -> 151 `i `uc
+-> -> 143 `i `uc
+-> -> 127 `i `uc
+-> -> 113 `i `uc
+-> -> 101 `i `uc
+-> -> 95 `i `uc
+..
+]"12
+[v _main `(v 1 e ]
+[p mainexit ]
+{
+[e :U _main ]
+[f ]
+[; ;kadai3.c: 11: void main()
+[; ;kadai3.c: 12: {
+[; ;kadai3.c: 13: RB1 = 0;
+"13
+[e = _RB1 -> -> 0 `i `b ]
+[; ;kadai3.c: 14: interr();
+"14
+[v _interr `(v 0 ef ]
+[e ( _interr ..  ]
+[; ;kadai3.c: 15: ioport();
+"15
+[v _ioport `(v 0 ef ]
+[e ( _ioport ..  ]
+[; ;kadai3.c: 16: while(1)
+"16
+[e :U 3 ]
+[; ;kadai3.c: 17: {
+[; ;kadai3.c: 18: while(RA0 == 0)
+"18
+[e $U 5 ]
+[e :U 6 ]
+[; ;kadai3.c: 19: {
+[; ;kadai3.c: 20: GIE = 1;
+"20
+[e = _GIE -> -> 1 `i `b ]
+[; ;kadai3.c: 21: bell(x[b]);
+"21
+[v _bell `(v 0 ef1`uc ]
+[e ( _bell (1 *U + &U _x * -> -> _b `ui `ux -> -> # `uc `ui `ux ]
+"22
+[e :U 5 ]
+"18
+[e $ == -> _RA0 `i -> 0 `i 6 ]
+[e :U 7 ]
+[; ;kadai3.c: 22: }
+[; ;kadai3.c: 23: GIE = 0;
+"23
+[e = _GIE -> -> 0 `i `b ]
+[; ;kadai3.c: 24: RB1 = 0;
+"24
+[e = _RB1 -> -> 0 `i `b ]
+"25
+[e :U 2 ]
+"16
+[e $U 3 ]
+[e :U 4 ]
+"26
+[; ;kadai3.c: 25: }
+[; ;kadai3.c: 26: }
+[e :UE 1 ]
+}
+"28
+[v _ioport `(v 1 ef ]
+{
+[e :U _ioport ]
+[f ]
+[; ;kadai3.c: 27: void ioport(void)
+[; ;kadai3.c: 28: {
+[; ;kadai3.c: 29: TRISA = 0x0f;
+"29
+[e = _TRISA -> -> 15 `i `uc ]
+[; ;kadai3.c: 30: TRISB = 0;
+"30
+[e = _TRISB -> -> 0 `i `uc ]
+"31
+[; ;kadai3.c: 31: }
+[e :UE 8 ]
+}
+"33
+[v _bell `(v 1 ef1`uc ]
+{
+[v _a `uc 1 r1 ]
+[e :U _bell ]
+[f ]
+[; ;kadai3.c: 32: void bell(char a)
+[; ;kadai3.c: 33: {
+[; ;kadai3.c: 34: RB1 = 0;
+"34
+[e = _RB1 -> -> 0 `i `b ]
+[; ;kadai3.c: 35: { unsigned char _dcnt; _dcnt = (a)/((12*1000L)/(10*1000L))|1; while(--_dcnt != 0) continue; };
+"35
+{
+[v __dcnt `uc 1 a ]
+[e = __dcnt -> | / -> _a `l / * -> -> 12 `i `l -> 1000 `l * -> -> 10 `i `l -> 1000 `l -> -> 1 `i `l `uc ]
+[e $U 10 ]
+[e :U 11 ]
+[e $U 10 ]
+[e :U 10 ]
+[e $ != -> =- __dcnt -> -> 1 `i `uc `i -> 0 `i 11 ]
+[e :U 12 ]
+}
+[; ;kadai3.c: 36: RB1 = 1;
+"36
+[e = _RB1 -> -> 1 `i `b ]
+[; ;kadai3.c: 37: { unsigned char _dcnt; _dcnt = (a)/((12*1000L)/(10*1000L))|1; while(--_dcnt != 0) continue; };
+"37
+{
+[v __dcnt `uc 1 a ]
+[e = __dcnt -> | / -> _a `l / * -> -> 12 `i `l -> 1000 `l * -> -> 10 `i `l -> 1000 `l -> -> 1 `i `l `uc ]
+[e $U 13 ]
+[e :U 14 ]
+[e $U 13 ]
+[e :U 13 ]
+[e $ != -> =- __dcnt -> -> 1 `i `uc `i -> 0 `i 14 ]
+[e :U 15 ]
+}
+"38
+[; ;kadai3.c: 38: }
+[e :UE 9 ]
+}
+"40
+[v _interr `(v 1 ef ]
+{
+[e :U _interr ]
+[f ]
+[; ;kadai3.c: 39: void interr(void)
+[; ;kadai3.c: 40: {
+[; ;kadai3.c: 41: GIE = 0;
+"41
+[e = _GIE -> -> 0 `i `b ]
+[; ;kadai3.c: 42: T0IE = 1;
+"42
+[e = _T0IE -> -> 1 `i `b ]
+[; ;kadai3.c: 43: T0IF = 0;
+"43
+[e = _T0IF -> -> 0 `i `b ]
+[; ;kadai3.c: 44: TMR0 = 0;
+"44
+[e = _TMR0 -> -> 0 `i `uc ]
+[; ;kadai3.c: 45: T0CS = 0;
+"45
+[e = _T0CS -> -> 0 `i `b ]
+[; ;kadai3.c: 46: PSA = 0;
+"46
+[e = _PSA -> -> 0 `i `b ]
+[; ;kadai3.c: 47: PS0 = 1;
+"47
+[e = _PS0 -> -> 1 `i `b ]
+[; ;kadai3.c: 48: PS1 = 1;
+"48
+[e = _PS1 -> -> 1 `i `b ]
+[; ;kadai3.c: 49: PS2 = 1;
+"49
+[e = _PS2 -> -> 1 `i `b ]
+"50
+[; ;kadai3.c: 50: }
+[e :UE 16 ]
+}
+"52
+[v F151 `(i 1 t ]
+[v _isr `I(i 1 e ]
+{
+[e :U _isr ]
+[f ]
+[; ;kadai3.c: 51: interrupt isr()
+[; ;kadai3.c: 52: {
+[; ;kadai3.c: 53: T0IF = 0;
+"53
+[e = _T0IF -> -> 0 `i `b ]
+[; ;kadai3.c: 54: a = a + 1;
+"54
+[e = _a + _a -> 1 `i ]
+[; ;kadai3.c: 55: if(a == 39)
+"55
+[e $ ! == _a -> 39 `i 18 ]
+[; ;kadai3.c: 56: {
+[; ;kadai3.c: 57: b++;
+"57
+[e ++ _b -> 1 `i ]
+[; ;kadai3.c: 58: if(b == 8)
+"58
+[e $ ! == _b -> 8 `i 19 ]
+[; ;kadai3.c: 59: {
+[; ;kadai3.c: 60: b = 0;
+"60
+[e = _b -> 0 `i ]
+"61
+[e :U 19 ]
+[; ;kadai3.c: 61: }
+[; ;kadai3.c: 62: a = 0;
+"62
+[e = _a -> 0 `i ]
+"63
+[e :U 18 ]
+"64
+[; ;kadai3.c: 63: }
+[; ;kadai3.c: 64: }
+[e :UE 17 ]
+}

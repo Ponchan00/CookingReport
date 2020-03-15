@@ -1,0 +1,211 @@
+
+
+HI-TECH Software PICC Macro Assembler V9.60PL1
+                                                      Mon Jan 27 15:41:14 2020
+
+
+     1                           	processor	16F84A
+     2                           	opt	pw 79
+     3                           	psect	text0,local,class=CODE,delta=2
+     4                           	psect	config,global,class=CONFIG,delta=2
+     5                           	psect	text1,local,class=CODE,delta=2
+     6                           	psect	text2,local,class=CODE,delta=2
+     7                           	psect	text3,local,class=CODE,delta=2
+     8                           	psect	temp,global,ovrld,class=BANK0,space=1,de
+      +                          lta=1
+     9  0000                     
+    10  0000                     
+    11  0000                     
+    12  0000                     
+    13  0000                     
+    14  0000                     
+    15  0000                     
+    16  0000                     
+    17  0000                     
+    18  0000                     	;#
+    19                           
+    20                           	psect	text0
+    21  03DC                     _main
+    22                           ;	_a assigned to ?a_main+0
+    23  0000                     _main$a	set	?a_main
+    24                           ;	_ta assigned to ?a_main+1
+    25  0000                     _main$ta	set	?a_main+1
+    26                           ;Test7.c: 6: void main()
+    27  03DC  1283               	bcf	3,5
+    28  03DD  018D               	clrf	?a_main+1
+    29  03DE  0A8D               	incf	?a_main+1
+    30  03DF  3006               	movlw	6
+    31  03E0  008E               	movwf	?a_main+2
+    32  03E1  300F               	movlw	15
+    33  03E2  008F               	movwf	?a_main+3
+    34  03E3  3008               	movlw	8
+    35  03E4  0090               	movwf	?a_main+4
+    36  03E5  3002               	movlw	2
+    37  03E6  0091               	movwf	?a_main+5
+    38  03E7  3004               	movlw	4
+    39  03E8  0092               	movwf	?a_main+6
+    40                           ;Test7.c: 10: ioport();
+    41  03E9  1283               	bcf	3,5
+    42  03EA  23B4               	call	_ioport
+    43  03EB                     l3
+    44                           ;Test7.c: 11: while(1)
+    45                           ;Test7.c: 12: {
+    46  03EB  0186               	clrf	6	;volatile
+    47                           ;Test7.c: 14: while(RA0 == 0)
+    48  03EC                     l5
+    49  03EC  1805               	btfsc	5,0
+    50  03ED  2BEB               	goto	l3
+    51                           ;Test7.c: 15: {
+    52  03EE  018C               	clrf	?a_main
+    53  03EF                     l8
+    54                           ;Test7.c: 17: {
+    55  03EF  080C               	movf	?a_main,w
+    56  03F0  3E0D               	addlw	?a_main+1
+    57  03F1  0084               	movwf	4
+    58  03F2  0800               	movf	0,w
+    59  03F3  0086               	movwf	6	;volatile
+    60                           ;Test7.c: 19: delaym(500);
+    61  03F4  30F4               	movlw	244
+    62  03F5  0093               	movwf	?_delaym
+    63  03F6  3001               	movlw	1
+    64  03F7  0094               	movwf	?_delaym+1
+    65  03F8  1283               	bcf	3,5
+    66  03F9  23C7               	call	_delaym
+    67  03FA  0A8C               	incf	?a_main
+    68  03FB  3006               	movlw	6
+    69  03FC  020C               	subwf	?a_main,w
+    70  03FD  1803               	btfsc	3,0
+    71  03FE  2BEC               	goto	l5
+    72  03FF  2BEF               	goto	l8
+    73                           
+    74                           	psect	config
+    75  2007  3FF2               	dw	16370	;#
+    76                           
+    77                           	psect	text1
+    78  03B4                     _ioport
+    79                           ;Test7.c: 24: void ioport(void)
+    80  03B4  300F               	movlw	15
+    81  03B5  1683               	bsf	3,5
+    82  03B6  0085               	movwf	5	;volatile
+    83                           ;Test7.c: 27: TRISB = 0;
+    84  03B7  0186               	clrf	6	;volatile
+    85                           ;Test7.c: 28: }
+    86  03B8  1283               	bcf	3,5
+    87  03B9  0008               	return	;W free
+    88                           
+    89                           	psect	text2
+    90  03C7                     _delaym
+    91                           ;Test7.c: 29: void delaym(int a)
+    92  03C7  2BCF               	goto	l13
+    93  03C8                     l14
+    94                           ;Test7.c: 32: {
+    95  03C8  30FF               	movlw	-1
+    96  03C9  1283               	bcf	3,5
+    97  03CA  23BA               	call	_DelayMs
+    98                           ;Test7.c: 34: a=a-255;
+    99  03CB  3001               	movlw	-255
+   100  03CC  0793               	addwf	?_delaym
+   101  03CD  1C03               	btfss	3,0
+   102  03CE  0394               	decf	?_delaym+1
+   103  03CF                     l13
+   104  03CF  1283               	bcf	3,5
+   105  03D0  0814               	movf	?_delaym+1,w
+   106  03D1  3A80               	xorlw	128
+   107  03D2  00CF               	movwf	btemp
+   108  03D3  3081               	movlw	129
+   109  03D4  024F               	subwf	btemp,w
+   110  03D5  3000               	movlw	0
+   111                           ;set	bank bits (((?_delaym+0)))
+   112  03D6  1903               	btfsc	3,2
+   113  03D7  0213               	subwf	?_delaym,w
+   114  03D8  1803               	btfsc	3,0
+   115  03D9  2BC8               	goto	l14
+   116                           ;Test7.c: 35: }
+   117  03DA  0813               	movf	?_delaym,w
+   118  03DB  2BBA               	goto	_DelayMs
+   119                           
+   120                           	psect	text3
+   121  0000                     
+   122  0000                     
+   123  0000                     
+   124  0000                     
+   125  0000                     
+   126  0000                     
+   127  0000                     
+   128  0000                     
+   129  0000                     
+   130  0000                     
+   131  0000                     
+   132  0000                     
+   133  0000                     
+   134  0000                     
+   135  0000                     
+   136  0000                     
+   137  0000                     
+   138  0000                     
+   139  0000                     
+   140  0000                     
+   141  0000                     
+   142  0000                     
+   143  0000                     
+   144  0000                     
+   145  0000                     
+   146  0000                     
+   147  0000                     
+   148  0000                     
+   149  0000                     
+   150  0000                     
+   151  0000                     
+   152  0000                     
+   153  0000                     
+   154  0000                     
+   155  0000                     
+   156  0000                     
+   157  0000                     
+   158  0000                     
+   159  0000                     
+   160  0000                     
+   161  0000                     
+   162  0000                     
+   163  0000                     
+   164  0000                     
+   165  0000                     
+   166  0000                     
+   167  0000                     
+   168  0000                     
+   169  0000                     
+   170  0000                     
+   171  0000                     
+   172  0000                     
+   173  0000                     
+   174  0000                     
+   175  0000                     
+   176  0000                     
+   177  0000                     
+   178  0000                     
+   179  0000                     
+   180  0000                     
+   181  0000                     
+   182  0000                     
+   183  0000                     
+   184  0000                     
+   185  0000                     
+   186  0000                     
+   187  0000                     
+   188  0000                     
+   189  0000                     
+   190  0000                     
+   191                           
+   192                           	psect	temp
+   193  004F                     btemp
+                     btemp
+   194  004F                     	ds	1
+
+
+HI-TECH Software PICC Macro Assembler V9.60PL1
+Symbol Table                                          Mon Jan 27 15:41:14 2020
+
+    ?a_main 000C           l3 03EB           l5 03EC           l8 03EF  
+   ?_delaym 0013          l13 03CF          l14 03C8          fsr 0004  
+    _delaym 03C7      _ioport 03B4     _DelayMs 03BA        _main 03DC  
+      btemp 004F        start 0000       status 0003  used_btemp0 0001  

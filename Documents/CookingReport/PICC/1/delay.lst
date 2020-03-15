@@ -1,0 +1,61 @@
+
+
+HI-TECH Software PICC Macro Assembler V9.60PL1
+                                                      Mon Oct 21 15:21:10 2019
+
+
+     1                           	processor	16F84A
+     2                           	opt	pw 79
+     3                           	psect	text0,local,class=CODE,delta=2
+     4                           	psect	text1,local,class=CODE,delta=2
+     5  0000                     
+     6  0000                     
+     7  0000                     
+     8  0000                     
+     9  0000                     
+    10  0000                     
+    11  0000                     
+    12  0000                     
+    13  0000                     
+    14  0000                     
+    15                           
+    16                           	psect	text0
+    17  00CD                     _DelayMs
+    18                           ;	_cnt assigned to ?a_DelayMs+0
+    19  0000                     _DelayMs$cnt	set	?a_DelayMs
+    20                           ;	_i assigned to ?a_DelayMs+1
+    21  0000                     _DelayMs$i	set	?a_DelayMs+1
+    22                           ;	__dcnt assigned to ?a_DelayMs+2
+    23  0000                     _DelayMs$_dcnt	set	?a_DelayMs+2
+    24                           ;_cnt stored from w
+    25  00CD  1283               	bcf	3,5
+    26  00CE  0092               	movwf	?a_DelayMs
+    27  00CF                     l4
+    28                           ;delay.c: 10: void
+    29                           ;delay.c: 22: i = 4;
+    30  00CF  3004               	movlw	4
+    31  00D0  0093               	movwf	?a_DelayMs+1
+    32  00D1                     l7
+    33                           ;delay.c: 23: do {
+    34                           ;delay.c: 24: { unsigned char _dcnt; _dcnt = (2
+      +                          50)/((12*1000L)/(10*1000L))|1; while(--_dcnt !=
+      +                           0) continue; };
+    35  00D1  30FB               	movlw	-5
+    36  00D2  0094               	movwf	?a_DelayMs+2
+    37  00D3                     l9
+    38  00D3  0B94               	decfsz	?a_DelayMs+2
+    39  00D4  28D3               	goto	l9
+    40                           ;delay.c: 25: } while(--i);
+    41  00D5  0B93               	decfsz	?a_DelayMs+1
+    42  00D6  28D1               	goto	l7
+    43                           ;delay.c: 26: } while(--cnt);
+    44  00D7  0B92               	decfsz	?a_DelayMs
+    45  00D8  28CF               	goto	l4
+    46  00D9  0008               	return
+
+
+HI-TECH Software PICC Macro Assembler V9.60PL1
+Symbol Table                                          Mon Oct 21 15:21:10 2019
+
+    ?a_DelayMs 0012              l4 00CF              l7 00D1  
+            l9 00D3        _DelayMs 00CD          status 0003  
